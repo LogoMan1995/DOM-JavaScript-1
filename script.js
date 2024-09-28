@@ -1,15 +1,15 @@
-document.querySelector('.grid').addEventListener('click', (e) => {
-    if (e.target.tagName === "IMG") {
-        let howmany = document.querySelector(".grid").querySelectorAll("li").length;
-        if (howmany > 1) {
-            let remove = e.target.parentNode;
-            remove.parentNode.removeChild(remove)
-        }else{
-            let profile = e.target.alt;
-            document.querySelector("#art p").innerHTML = `<p>This picture is ${profile}<p/>`
-        }
+document.querySelector(".grid").addEventListener("mouseover", (e) => {
+    if (e.target.tagName === "IMG") { // Исправлено на ===
+        let myElement = document.createElement('div');
+        myElement.className = "preview";
+        e.target.parentNode.appendChild(myElement);
+
+        let myImg = document.createElement('img');
+        let locImg = e.target.src;
+        
+        // Исправлено на substring и корректный индекс
+        myImg.src = locImg.substring(0, locImg.length - 7) + ".jpg"; 
+        myElement.appendChild(myImg); // Добавляем myImg в myElement
     }
-})
-
-
+});
 
